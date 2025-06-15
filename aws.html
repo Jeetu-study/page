@@ -1,0 +1,53 @@
+<!--
+import boto3
+from botocore.config import Config
+
+# 🟡 Your Cognito Identity Pool ID
+identity_pool_id = 'us-east-1:12345678-abcd-1234-efgh-1234567890ab'
+
+# 🔵 Region where your identity pool is created
+region = 'us-east-1'
+
+# ✅ Step 1: Get the identity ID
+cognito_identity = boto3.client('cognito-identity', region_name=region)
+
+identity_response = cognito_identity.get_id(
+    IdentityPoolId=identity_pool_id
+)
+
+identity_id = identity_response['IdentityId']
+print(f"[+] Identity ID: {identity_id}")
+
+# ✅ Step 2: Get AWS temporary credentials
+credentials_response = cognito_identity.get_credentials_for_identity(
+    IdentityId=identity_id
+)
+
+credentials = credentials_response['Credentials']
+
+access_key = credentials['AccessKeyId']             # Example: ASIAIOSFODNN7EXAMPLE
+secret_key = credentials['SecretKey']               # Example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+session_token = credentials['SessionToken']         # Example: IQoJb3JpZ2luX2VjEPn//////////wEaCXVzLXdlc3QtMiJHMEUCIQC2...
+
+print(f"[+] Access Key ID: {access_key}")
+print(f"[+] Secret Access Key: {secret_key}")
+print(f"[+] Session Token: {session_token}")
+
+# ✅ Step 3: Use these credentials to access AWS services (e.g., S3)
+s3 = boto3.client(
+    's3',
+    region_name=region,
+    aws_access_key_id=access_key,
+    aws_secret_access_key=secret_key,
+    aws_session_token=session_token
+)
+
+# 🧪 Try listing buckets
+try:
+    buckets = s3.list_buckets()
+    print("\n[+] S3 Buckets:")
+    for b in buckets['Buckets']:
+        print(f"  - {b['Name']}")
+except Exception as e:
+    print("\n[!] Error accessing S3:", e)
+-->
