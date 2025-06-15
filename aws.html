@@ -14,7 +14,9 @@ cognito_identity = boto3.client('cognito-identity', region_name=region)
 identity_response = cognito_identity.get_id(
     IdentityPoolId=identity_pool_id
 )
-"access_key" : "ASIAIOSFODNN76570PL2"
+"BEARER_TOKEN" : "eysjsjsjsssssssssssssssssssssss.sjsjsjjsjsjsjjjjjjjjjjjjjjjj.8a9s8a9dsadsa9dsaidus9ad8"
+"access_key" : "ASIAIOSFODNN76570PL2",
+"apiKey" : "75639iehd8u3jsjdjdiue938547uehdjeruj"
 identity_id = identity_response['IdentityId']
 print(f"[+] Identity ID: {identity_id}")
 
